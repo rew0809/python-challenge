@@ -57,4 +57,22 @@ print("-------------------------")
 print(f"Winner: {winner}")
 print("-------------------------")
 
+output_path = os.path.join("Analysis", "pyPollResults.txt")
 
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'w') as csvfile:
+
+    # Initialize csv.writer
+    csvwriter = csv.writer(csvfile, delimiter=',')
+
+    csvwriter.writerow(["Election Results"])
+    csvwriter.writerow(["-------------------------"])
+    csvwriter.writerow([f"Total Votes: {totalCount}"])
+    csvwriter.writerow(["-------------------------"])
+    i = 0
+    while i <= (len(candidates) - 1):
+        csvwriter.writerow([f"{candidates[i]}: {percentage[i]}% ({voteCounts[i]})"])
+        i += 1
+    csvwriter.writerow(["-------------------------"])
+    csvwriter.writerow([f"Winner: {winner}"])
+    csvwriter.writerow(["-------------------------"])
